@@ -1,0 +1,6 @@
+{
+    "url": "localhost",
+    "port": "8080",
+    "payloadpath": "/payload",
+    "wspath": "/ws"
+}

