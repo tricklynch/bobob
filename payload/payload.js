@@ -1,11 +1,5 @@
-(() => {
-    function replaceLinks() {
-        // TODO Implement this
-    }
-
-    function interceptAjax() {
-        // TODO implement this
-    }
+(() => { // Don't pollute global namespace
+    // TODO implement persistence
 
     (() => {
         // TODO build file using a config containing the attacker server
