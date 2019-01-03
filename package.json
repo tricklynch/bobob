@@ -2,8 +2,12 @@
   "name": "bobob",
   "version": "0.0.0",
   "description": "Browse on Behalf of Browser",
-  "main": "index.js",
+  "main": "server/main.js",
   "repository": "https://github.com/tricklynch/bobob",
   "author": "tricklynch <p@tricklynch.org>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-ws": "^4.0.0"
+  }
 }
