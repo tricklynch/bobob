@@ -3,7 +3,7 @@
 
     (() => {
         // TODO build file using a config containing the attacker server
-        const ws = new WebSocket('ws://localhost:8080/ws')
+        const ws = new WebSocket('ws://localhost:8080/ws/12345')
 
         ws.onmessage = (msg) => {
             const msgobj = JSON.parse(msg.data)
