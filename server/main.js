@@ -9,7 +9,8 @@ app.use(express.static(path.join(__dirname, '..', 'payload')))
 
 app.ws('/ws', (ws, req) => {
     ws.on('message', (msg) => {
-        ws.send(msg)
+        console.log(JSON.stringify(msg))
+        ws.send('hello')
     })
 })
 
