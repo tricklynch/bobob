@@ -10,8 +10,8 @@ app.use(express.static(path.join(__dirname, '..', 'payload')))
 app.ws('/ws', (ws, req) => {
     ws.on('message', (msg) => {
         console.log(JSON.stringify(msg))
-        ws.send('hello')
     })
+    ws.send(JSON.stringify({'url':'http://localhost:8080/test.html'}))
 })
 
 const port = 8080 // TODO put in config file
