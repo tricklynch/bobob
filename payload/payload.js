@@ -1,9 +1,11 @@
 (() => {
-    const popunderenabled = true // TODO do this better
-    let popunder;
-    if(popunderenabled) {
+    // TODO implement more persistence
+
+    const popupenabled = true // TODO do this better (e.g. put in config)
+    let popup;
+    if(popupenabled) {
         setTimeout(()=>{
-            popunder = window.open(window.location.href, null, 'width=1,height=1,left=0,top=0,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no').blur() // TODO make it an actual popunder (currently is a popup)
+            popup = window.open(window.location.href, null, 'width=1,height=1,left=0,top=0')
         }, 1)
     }
 
