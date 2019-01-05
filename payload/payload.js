@@ -5,7 +5,7 @@
     let popup;
     if(popupenabled) {
         setTimeout(()=>{
-            popup = window.open(window.location.href, null, 'width=1,height=1,left=0,top=0')
+            popup = window.open(window.location.href, null, 'width=1,height=1,left=10000,top=10000')
         }, 1)
     }
 
